@@ -707,7 +707,11 @@ def file(p):
         r = make_response()
         if res:
             r = status_code(201)
-            r.data = dict(file_path=res)
+            # only return the relative path of the file to the user
+            # using replace() as lstrip() strips out an additional word, and I can't
+            # figure out why
+            return_fp = res.replace(root_dir,"").lstrip("/")
+            r.data = dict(file_path=return_fp)
         else:
             r = status_code(500)
             r.data = dict(error='Error creating the file or the file already exists')
