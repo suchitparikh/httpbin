@@ -692,15 +692,12 @@ def file(p):
             r.headers = {'Content-Type': 'application/json'}
             return r
 
-        # add options:
-        ## grep for an expression in the file content
-
         return return_files(dir_path=p, name=filename, ctime=ctime, limit=limit)
 
     elif request.method == 'POST':
         # A file of name 'filename' will be created in 'p' directory
         # If the file already exists, create_file() will fail
-        data = request.data
+        data = request.get_data()
         ctype = request.headers.get('Content-Type', None)
 
         res = create_file(path=p, content=data, filename=filename, ctype=ctype)

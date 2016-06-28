@@ -559,7 +559,12 @@ def _get_file_details(fpath):
 
     parts = fpath.rsplit('/', 1)
     filename = parts[len(parts)-1]
-    name, ext = filename.rsplit('.',1)
+    name_split = filename.rsplit('.',1)
+
+    name = name_split[0]
+    ext = ""
+    if len(name_split) == 2:
+        ext = name_split[1]
 
     mimetype = 'application/octet-stream'
     if ext in ["txt", "text"]:
