@@ -261,6 +261,8 @@ Or run it directly:
 
 Changelog
 ---------
+-  0.5.2: Change ctime comparison in get_all_files_in_dir to >=
+-  0.5.1: use request.get_data() to get POST request data
 -  0.5.0: Added /file endpoint to create, get or delete a file
 -  0.4.1: Added floating-point support for /delay endpoint
 -  0.4.0: New /image/svg endpoint, add deploy to heroku button, add 406 response to /image, and don't always emit the transfer-encoding header for stream endpoint.

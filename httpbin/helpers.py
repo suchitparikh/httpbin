@@ -326,7 +326,7 @@ def response(credentails, password, request):
     HA2_value = HA2(credentails, request)
     if credentails.get('qop') is None:
         response = H(b":".join([
-            HA1_value.encode('utf-8'), 
+            HA1_value.encode('utf-8'),
             credentails.get('nonce', '').encode('utf-8'),
             HA2_value.encode('utf-8')
         ]))
@@ -475,7 +475,7 @@ def get_all_files_in_dir(dir_path, ctime, limit):
     If ctime is passed, it will only return the files that were created
     since ctime
     :param dir_path: path to the directory from which we seek the files
-           ctime: earliest time after which files must be created - unix timestamp
+           ctime: earliest ctime that makes a file eligible for return
            limit: the limit to the number of files to be returned
     :returns : A list of full path to all the qualified files
     """
@@ -489,7 +489,7 @@ def get_all_files_in_dir(dir_path, ctime, limit):
             file_ctime = int(stat.st_ctime)
 
             if ctime is not None:
-                if file_ctime > ctime:
+                if file_ctime >= ctime:
                     return_file_paths.append(full_path)
             else:
                 return_file_paths.append(full_path)
